@@ -1,4 +1,4 @@
-1.This is a custom data analytics web application enabling users to perform various data analytics operations like data visualization, handling missing data, outlier detection, column manipulation, etc.
+1.This is a custom data analytics web application enabling users to perform various data analytics operations like data visualization, handling missing data, outlier detection, column manipulation, etc on a custom dataset.
 
 2. To start the project open command promt in current(project) directory and enter below command:
    'python app.py'
