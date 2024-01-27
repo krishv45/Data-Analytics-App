@@ -5,3 +5,5 @@
    After this go to browser and enter the address http://127.0.0.1:5000
 
 3. The dataset file is 'world_population_data.csv'.
+
+4.The images generated while performing operations will be saved in 'static' folder.
