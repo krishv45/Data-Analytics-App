@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <title>Smallest countries and their density/growthrate</title>
+    <style>
+             .navbar-brand img {
+            max-height: 30px;
+        }
+
+        .navbar-dark {
+    background-color: #008069 !important;
+}
+
+        /* Adjust the icon size if necessary */
+.nav-link2 img {
+  width: 19px;
+  height: 19px;
+}
+
+.nav-link1 img {
+  width: 24px;
+  height: 24px;
+}
+.nav-link3 img {
+  width: 24px;
+  height: 24px;
+}
+
+
+
+.nav-link1 {
+  margin-left: 980px;
+  }
+
+.nav-link2 {
+  margin-left: 8px;
+  
+}
+.nav-link3 {
+  margin-left: 8px;
+  
+}
+
+.navbar-brand {
+    margin-left: 40px;
+}
+
+
+
+
+    .container-flex {
+            display: flex;
+             flex-direction: row;
+        }
+
+        .left-container {
+    flex: 1;
+    padding-right: 10px;
+    border: 8px solid #008069; /*008069*/
+    border-radius: 5px;
+    background-color: #fff;
+   /* overflow-y: auto; */
+    max-height: 91vh;
+    max-width: 500px;
+   
+}
+
+.right-container {
+    flex: 1;
+    padding-left: 10px;
+    border: 8px solid #008069;
+    border-radius: 5px;
+    background-color: #fff;
+    overflow-y: auto;
+    max-height: 91vh;
+    padding-left: 30px;
+    padding-right: 20px;
+}
+
+
+        .wrapper2 {
+            max-width: 325px;
+            margin: 0 auto;
+            border-radius: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            background: #fff; /*ecf0f3*/
+            box-shadow: 8px 8px 12px #cbced1, -1px -1px 2px white;  */
+        }
+
+        .graph-wrapper img {
+            justify-content: center;
+            background-color: #f8f9fa;
+            padding: 5px;
+            max-width: 100%;
+        }
+
+        .graph-wrapper h2 {
+            text-align: center;
+            font-weight: 900;
+            font-size: 2.0rem;
+            color: #1DA1F2;
+            letter-spacing: 1px;
+        }
+
+        .form-label {
+            margin-top: -100px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 1.2rem;
+           /* color: #1DA1F2; */
+           background: linear-gradient(135deg, #ff00cc, #3333ff); /* Gradient background */
+  -webkit-background-clip: text; /* Apply gradient to the text */
+  color: transparent; /* Make text transparent to show gradient */
+            
+        }
+
+
+
+    </style>
+</head>
+<body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/plots"> <span>Data Visualization</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Contact</a>
+                    </li>
+
+
+                  
+
+                <li class="nav-item2"><a class="nav-link1" href="#"><img src="{{ url_for('static', filename='images/twitter_logo1.svg') }}" alt="Twitter"></a></li>
+                <li class="nav-item"><a class="nav-link3" href="#"><img src="{{ url_for('static', filename='images/instagram_logo.svg') }}" alt="Instagram"></a></li>
+
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/snapchat_logo.svg') }}" alt="Snapchat"></a></li>
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/facebook_logo.svg') }}" alt="Facebook"></a></li>
+                
+
+            </ul>
+         
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="container-flex">
+
+            <!-- Left Side - Form -->
+    <div class="left-container">
+                <br>
+                <br>
+                <br>
+                 <br>
+    <div class="wrapper2">
+
+        <form method="post" action="{{ url_for('smallest_dens_gr') }}" class="mt-5">
+        <div class="mb-3">
+            <label for="nCountries" class="form-label">Select number of smallest countries:</label>
+            <input type="number" class="form-control" id="nCountries" name="n_countries" required>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Select data column:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="column" value="population_density" id="populationDensity">
+                <label class="form-check-label" for="populationDensity">Population Density</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="column" value="growth_rate" id="growthRate">
+                <label class="form-check-label" for="growthRate">Growth Rate</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Select graph types:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="graph_types" value="bar" id="barChart">
+                <label class="form-check-label" for="barChart">Bar Chart</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="graph_types" value="line" id="lineChart">
+                <label class="form-check-label" for="lineChart">Line Chart</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="graph_types" value="pie" id="pieChart">
+                <label class="form-check-label" for="pieChart">Pie Chart</label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Generate Graph</button>
+    </form>
+     <br>
+            </div>
+
+                
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+        </div>
+
+  <!-- Right Side - Graphs -->
+    <div class="right-container">
+                 <br>
+
+    {% if chart_paths %}
+<div class="graph-wrapper" style="text-align: center;">
+        {% for chart_path in chart_paths %}
+        <h2>{{ chart_path['title'] }}</h2>
+        <br>
+        <img src="{{ url_for('static', filename=chart_path['path']) }}" alt="{{ chart_path['title'] }}" class="img-fluid">
+        <br>
+            <br>
+            <br>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+</div>
+
+</body>
+</html>

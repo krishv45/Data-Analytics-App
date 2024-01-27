@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+    <title>Highest Population, Area, Density, and Growth Rate Comparison</title>
+    <style>
+        /* Add your custom styles here */
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <h1>Highest Population, Area, Density, and Growth Rate Comparison</h1>
+    <br>
+    <form method="post" action="{{ request.path }}">
+        <div class="form-group">
+            <label for="countries">Select Countries</label>
+            <select class="form-select" name="countries" multiple>
+                {% for country in countries %}
+                <option value="{{ country }}">{{ country }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="columns">Select Columns</label>
+            <select class="form-select" name="columns" multiple>
+                <option value="1980">1980</option>
+                <option value="1990">1990</option>
+                <option value="2000">2000</option>
+                <option value="2010">2010</option>
+                <option value="2020">2020</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="graphType">Select Graph Type</label>
+            <select class="form-select" name="graphType" multiple>
+                <option value="bar">Bar Chart</option>
+                <option value="line">Line Chart</option>
+                <option value="pie">Pie Chart</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Generate Graphs</button>
+    </form>
+    <hr>
+    {% if request.method == 'POST' and chart_paths %}
+    <div class="row">
+        {% for chart_path in chart_paths %}
+        <div class="col-md-4">
+            <h3>{{ chart_path['title'] }}</h3>
+            <img src="{{ url_for('static', filename=chart_path['path']) }}" alt="{{ chart_path['title'] }}">
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

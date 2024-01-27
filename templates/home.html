@@ -1,0 +1,569 @@
+<!--
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <style>
+        /* Customizing the navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: transparent;
+        }
+     
+
+        .navbar-brand img {
+            max-height: 40px;
+        }
+
+
+
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+
+    }
+
+    .image-wrapper img {
+        display: block;
+        width: 100%;
+        height: 380px;
+    }
+
+    .image-overlay {
+        position: absolute;
+        top: 50%;
+        left: 49%;
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        z-index: 1;
+    }
+.cp-title {
+            font-size: 45px;
+            font-weight: 700;
+            color: #fff;
+            padding-bottom: 0px;
+
+        }
+
+        .cp-title2 {
+            font-size: 23px;
+            font-weight: 700;
+            color: #fff;
+            padding-bottom: 15px;
+        }
+
+
+
+        .container-flex {
+            display: flex;
+             width: 100%;
+
+                    }
+
+        .form-container {
+            flex: 1;
+            margin-top: -20px;
+            padding: 20px;
+            max-width: 850px; /* Add a maximum width to control the width of the form container */
+            max-height: 70vh; /* Add a fixed height to enable scrolling */
+            /* Enable vertical scrolling when content overflows */
+        }
+
+        .form-container h2 {
+            font-weight: 700;
+            font-size: 35px;
+            background: linear-gradient(135deg, cyan, #3333ff); /* Gradient background */
+  -webkit-background-clip: text; /* Apply gradient to the text */
+  color: transparent; /* Make text transparent to show gradient */
+        }
+
+        .form-container p {
+            font-weight: 400;
+        }
+
+        .dataset-container {
+            flex: 1;
+            margin-top: 15px;
+            margin-left: -20px;
+            padding: 20px;
+            max-width: 300px; */
+            max-height: 80vh;/* Add a fixed height to enable scrolling */
+             /* Enable vertical scrolling when content overflows */
+        }
+
+        .dataset-container img {
+        display: block;
+        width: 350px%;
+        height: 380px;
+    }
+
+
+        .wrapper1 {
+            
+            max-width: 85%;
+            margin: 0 auto;
+           /* margin-top: 74px; */
+            padding: 20px;
+            
+        }
+
+
+    </style>
+</head>
+<body>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/"> <span>Home</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/preview_dataset"> <span> View Dataset</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/plots"> <span> Data Visualization</span> </a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/rename_columns"> <span> Rename Columns</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/drop_column"> <span> Drop Columns</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/outlier_detection"> <span> Outliers</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/handle_missing_data"> <span> Handle Missing_Data</span> </a>
+                    </li>
+                    
+                </ul>
+
+             
+            </div>
+        </div>
+    </nav>
+
+<div class="image-wrapper">
+    <img src="{{ url_for('static', filename='images/gcp-banner.png') }}" alt="Your Image">
+    <div class="image-overlay">
+        <h2 class="cp-title">World Population Data Analysis</h2>
+        <h3 class="cp-title2">Web Application</h3>
+        <p>Lets explore and compare population trends, growth rates, density, and area across countries over decades.</p>
+    </div>
+</div>
+
+
+<div class="container-flex">
+        
+        <div class="form-container">
+           
+
+            <div class="wrapper1">
+                <br>
+                <h2>Data Analytics</h2>
+                <br>
+                <p>
+                 Data analytics is a powerful and transformative field that leverages the vast amounts of data available to gain valuable insights and inform decision-making processes. In today's data-driven world, organizations across various industries are increasingly recognizing the importance of data analytics in gaining a competitive edge, improving efficiency, and enhancing overall performance.
+            </p>
+        <p>At its core, data analytics involves the systematic exploration, interpretation, and analysis of data to discover meaningful patterns, trends, and relationships. By employing a combination of statistical techniques, algorithms, and machine learning models, data analysts and data scientists can extract valuable information from data that can drive informed business strategies.
+
+        </p>
+<br>
+<br>
+        <h3>The Importance of Data Analytics:</h3>
+        <br>
+        <p>
+<b>1.  Informed Decision Making:</b> Data analytics provides valuable insights that aid organizations in making well-informed decisions. By analyzing historical data and identifying trends, decision-makers can better understand customer behavior, market trends, and business performance, leading to more effective strategies.
+</p>
+<p>
+<b>2.  Identifying Opportunities and Risks:</b> Data analytics helps organizations identify new opportunities for growth and expansion. It also enables the early detection of potential risks, allowing businesses to mitigate them proactively.
+</p>
+<p>
+<b>3.  Enhancing Efficiency:</b> Analyzing data can uncover inefficiencies within processes, enabling organizations to optimize operations and reduce costs.
+</p>
+<p>
+<b>4.  Personalization:</b> Data analytics plays a crucial role in understanding individual customer preferences and behaviors, enabling personalized marketing strategies and customer experiences.
+</p>
+<p>
+<b>5.  Predictive Analytics:</b> By using historical data and predictive modeling, organizations can forecast future trends and outcomes, aiding in resource planning and risk management.
+</p>
+ </p>
+
+
+<br>
+ <h3>Data Analytics Process:</h3>
+ <br>
+<p>
+<b>1.  Data Collection:</b> The first step in data analytics is collecting relevant data from various sources. This data can be structured (e.g., databases, spreadsheets) or unstructured (e.g., social media posts, emails), and it forms the foundation for further analysis.
+</p>
+<p>
+<b>2.  Data Cleaning and Preprocessing:</b> Raw data often contains errors, missing values, and inconsistencies. Data cleaning and preprocessing involve refining the data to ensure accuracy and consistency before analysis.
+</p>
+<p>
+<b>3.  Exploratory Data Analysis (EDA):</b> In this phase, analysts visualize and explore the data to gain initial insights. EDA helps identify patterns, trends, outliers, and relationships between variables.
+</p>
+<p>
+<b>4.  Data Analysis and Modeling:</b> Using statistical methods, machine learning algorithms, or other analytical techniques, analysts build models to derive insights from the data.
+</p>
+
+
+
+            </div>
+        </div>
+
+
+        <div class="dataset-container">
+            <img src="{{ url_for('static', filename='images/data_analytics33.jpg') }}" alt="Your Image">
+            <br>
+            <br> 
+            <img src="{{ url_for('static', filename='images/data_analytics11.jpg') }}" alt="Your Image">
+            <br>
+            <br>
+            <img src="{{ url_for('static', filename='images/data_analytics22.jpg') }}" alt="Your Image">
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+
+-->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <style>
+        /* Customizing the navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: transparent;
+        }
+     
+
+        .navbar-brand img {
+            max-height: 40px;
+        }
+
+/*  styling for the navigation bar */
+.navbar {
+  padding: 1rem;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+.nav-item2 {
+  margin-left: 320px;
+  
+}
+.nav-link2 {
+
+  margin-left: 10px;
+}
+
+
+.nav-link3 {
+  margin-left: 10px;
+}
+
+.nav-link3 img {
+  width: 24px;
+  height: 24px;
+}
+
+.nav-link2 img {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-link1 img {
+  width: 23px;
+  height: 23px;
+}
+
+
+
+
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+
+    }
+
+    .image-wrapper img {
+        display: block;
+        width: 100%;
+        height: 380px;
+    }
+
+    .image-overlay {
+        position: absolute;
+        top: 50%;
+        left: 49%;
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        z-index: 1;
+    }
+.cp-title {
+            font-size: 45px;
+            font-weight: 700;
+            color: #fff;
+            padding-bottom: 0px;
+
+        }
+
+        .cp-title2 {
+            font-size: 23px;
+            font-weight: 700;
+            color: #fff;
+            padding-bottom: 15px;
+        }
+
+
+
+        .container-flex {
+            display: flex;
+             width: 100%;
+
+                    }
+
+        .form-container {
+            flex: 1;
+            margin-top: -20px;
+            padding: 20px;
+            max-width: 850px; /* Add a maximum width to control the width of the form container */
+            max-height: 70vh; /* Add a fixed height to enable scrolling */
+            /* Enable vertical scrolling when content overflows */
+        }
+
+        .form-container h2 {
+            font-weight: 700;
+            font-size: 35px;
+            background: linear-gradient(135deg, cyan, #3333ff); /* Gradient background */
+  -webkit-background-clip: text; /* Apply gradient to the text */
+  color: transparent; /* Make text transparent to show gradient */
+        }
+
+        .form-container p {
+            font-weight: 400;
+        }
+
+        .dataset-container {
+            flex: 1;
+            margin-top: 15px;
+            margin-left: 65px;
+            margin-right: -30px;
+            padding: 20px;
+            max-width: 400px; */
+            max-height: 80vh;/* Add a fixed height to enable scrolling */
+             /* Enable vertical scrolling when content overflows */
+        }
+
+        .dataset-container img {
+        display: block;
+        width: 350px%;
+        height: 380px;
+    }
+
+
+        .wrapper1 {
+            
+            max-width: 85%;
+            margin: 0 auto;
+           /* margin-top: 74px; */
+            padding: 20px;
+            
+        }
+
+
+    </style>
+</head>
+<body>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    <!--<a class="nav-link active" aria-current="page" href="/"> <span>Home</span> </a> */ -->
+                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/"> <span>Home</span> </a>
+                        
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/preview_dataset"> <span> View Dataset</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/plots"> <span> Data Visualization</span> </a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/rename_columns"> <span> Rename Columns</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/drop_column"> <span> Drop Columns</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/outlier_detection"> <span> Outliers</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/handle_missing_data"> <span> Handle Missing_Data</span> </a>
+                    </li>
+
+                <li class="nav-item2"><a class="nav-link1" href="#"><img src="{{ url_for('static', filename='images/twitter_logo1.svg') }}" alt="Twitter"></a></li>
+                <li class="nav-item"><a class="nav-link3" href="#"><img src="{{ url_for('static', filename='images/instagram_logo.svg') }}" alt="Instagram"></a></li>
+
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/snapchat_logo.svg') }}" alt="Snapchat"></a></li>
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/facebook_logo.svg') }}" alt="Facebook"></a></li>
+                
+                    
+                </ul>
+
+               
+             
+            </div>
+        </div>
+    </nav>
+
+<div class="image-wrapper">
+    <img src="{{ url_for('static', filename='images/gcp-banner.png') }}" alt="Your Image">
+    <div class="image-overlay">
+        <h2 class="cp-title">World Population Data Analysis</h2>
+        <h3 class="cp-title2">Web Application</h3>
+        <p>Lets explore and compare population trends, growth rates, density, and area across countries over decades.</p>
+    </div>
+</div>
+
+
+<div class="container-flex">
+        
+        <div class="form-container">
+           
+
+            <div class="wrapper1">
+                <br>
+                <h2>Data Analytics</h2>
+                <br>
+                <p>
+                 Data analytics is a powerful and transformative field that leverages the vast amounts of data available to gain valuable insights and inform decision-making processes. In today's data-driven world, organizations across various industries are increasingly recognizing the importance of data analytics in gaining a competitive edge, improving efficiency, and enhancing overall performance.
+            </p>
+        <p>At its core, data analytics involves the systematic exploration, interpretation, and analysis of data to discover meaningful patterns, trends, and relationships. By employing a combination of statistical techniques, algorithms, and machine learning models, data analysts and data scientists can extract valuable information from data that can drive informed business strategies.
+
+        </p>
+<br>
+<br>
+        <h3>The Importance of Data Analytics:</h3>
+        <br>
+        <p>
+<b>1.  Informed Decision Making:</b> Data analytics provides valuable insights that aid organizations in making well-informed decisions. By analyzing historical data and identifying trends, decision-makers can better understand customer behavior, market trends, and business performance, leading to more effective strategies.
+</p>
+<p>
+<b>2.  Identifying Opportunities and Risks:</b> Data analytics helps organizations identify new opportunities for growth and expansion. It also enables the early detection of potential risks, allowing businesses to mitigate them proactively.
+</p>
+<p>
+<b>3.  Enhancing Efficiency:</b> Analyzing data can uncover inefficiencies within processes, enabling organizations to optimize operations and reduce costs.
+</p>
+<p>
+<b>4.  Personalization:</b> Data analytics plays a crucial role in understanding individual customer preferences and behaviors, enabling personalized marketing strategies and customer experiences.
+</p>
+<p>
+<b>5.  Predictive Analytics:</b> By using historical data and predictive modeling, organizations can forecast future trends and outcomes, aiding in resource planning and risk management.
+</p>
+ </p>
+
+
+<br>
+ <h3>Data Analytics Process:</h3>
+ <br>
+<p>
+<b>1.  Data Collection:</b> The first step in data analytics is collecting relevant data from various sources. This data can be structured (e.g., databases, spreadsheets) or unstructured (e.g., social media posts, emails), and it forms the foundation for further analysis.
+</p>
+<p>
+<b>2.  Data Cleaning and Preprocessing:</b> Raw data often contains errors, missing values, and inconsistencies. Data cleaning and preprocessing involve refining the data to ensure accuracy and consistency before analysis.
+</p>
+<p>
+<b>3.  Exploratory Data Analysis (EDA):</b> In this phase, analysts visualize and explore the data to gain initial insights. EDA helps identify patterns, trends, outliers, and relationships between variables.
+</p>
+<p>
+<b>4.  Data Analysis and Modeling:</b> Using statistical methods, machine learning algorithms, or other analytical techniques, analysts build models to derive insights from the data.
+</p>
+
+
+
+            </div>
+        </div>
+
+
+        <div class="dataset-container">
+            <img src="{{ url_for('static', filename='images/data_analytics33.jpg') }}" alt="Your Image">
+            <br>
+            <br> 
+            <img src="{{ url_for('static', filename='images/data_analytics11.jpg') }}" alt="Your Image">
+            <br>
+            <br>
+            <img src="{{ url_for('static', filename='images/data_analytics22.jpg') }}" alt="Your Image">
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+
+
+
+
+
+

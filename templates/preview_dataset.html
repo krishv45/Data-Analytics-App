@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview Dataset</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <style>
+        /* Customizing the navbar */
+
+        .container {
+                width: 100%;
+        }
+
+        .navbar {
+            position: relative;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background-color: #008069;
+           /* background-color: transparent; */
+        }
+     
+
+        .navbar-brand img {
+            max-height: 30px;
+            margin-left: 40px;
+        }
+        
+
+/*  styling for the navigation bar */
+.navbar {
+  padding: 1rem;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link2 {
+  margin-left: 9px;
+}
+.nav-link1 {
+  margin-left: 400px;
+  
+}
+
+.nav-link3 {
+  margin-left: 10px;
+}
+
+.nav-link3 img {
+  width: 24px;
+  height: 24px;
+}
+
+
+/* Adjust the icon size if necessary */
+.nav-link2 img {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-link1 img {
+  width: 23px;
+  height:23px;
+}
+
+
+
+
+
+    .image-wrapper {
+        position: relative;
+        width: 100%;
+
+    }
+
+    .image-wrapper img {
+        display: block;
+        width: 100%;
+        height: 500px;
+    }
+
+    .image-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        z-index: 1;
+    }
+.cp-title {
+            font-size: 50px;
+            font-weight: 700;
+            color: #fff;
+            padding-bottom: 18px;
+        }
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .wrapper {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            margin: 20px auto;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+    </style>
+</head>
+<body>
+  
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/"> <span>Home</span> </a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/preview_dataset"> <span>View Dataset</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/plots"> <span> Data Visualization</span> </a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/rename_columns"> <span> Rename Columns</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/drop_column"> <span> Drop Columns</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/outlier_detection"> <span> Outliers</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/handle_missing_data"> <span> Handle Missing_Data</span> </a>
+                    </li>
+
+                    
+                <li class="nav-item2"><a class="nav-link1" href="#"><img src="{{ url_for('static', filename='images/twitter_logo2.svg') }}" alt="Twitter"></a></li>
+                <li class="nav-item"><a class="nav-link3" href="#"><img src="{{ url_for('static', filename='images/instagram_logo.svg') }}" alt="Instagram"></a></li>
+
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/snapchat_logo.svg') }}" alt="Snapchat"></a></li>
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/facebook_logo.svg') }}" alt="Facebook"></a></li>
+                
+
+                </ul>
+            
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="wrapper">
+        <br>
+    <h1>Dataset Overview</h1>
+
+    <p>Dataset Size: ({{ dataset_size }}×{{ num_columns }}) </p>
+     <p>Number of Rows= {{ dataset_size }},  Number of Columns= {{ num_columns }} </p>
+     <p></p>
+    <table>
+        {{ data|safe }}
+    </table>
+
+</div>
+</body>
+</html>

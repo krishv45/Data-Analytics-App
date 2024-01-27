@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <title>Rename Columns</title>
+    <style>
+
+        
+        .navbar-brand img {
+            max-height: 30px;
+            margin-left: 40px;
+        }
+
+
+        .navbar-dark {
+    background-color: #008069 !important;
+}
+
+/*  styling for the navigation bar */
+.navbar {
+  padding: 1rem;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link2 {
+  margin-left: 9px;
+}
+.nav-link1 {
+  margin-left: 1000px;
+  
+}
+
+.nav-link3 {
+  margin-left: 10px;
+}
+
+.nav-link3 img {
+  width: 24px;
+  height: 24px;
+}
+
+
+/* Adjust the icon size if necessary */
+.nav-link2 img {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-link1 img {
+  width: 23px;
+  height: 23px;
+}
+
+
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container-flex {
+            display: flex;
+
+        }
+
+        .form-container {
+            flex: 1;
+            margin-top: 5px;
+            
+            padding: 20px;
+            max-width: 350px; /* Add a maximum width to control the width of the form container */
+            max-height: 70vh; /* Add a fixed height to enable scrolling */
+            overflow-y: auto; /* Enable vertical scrolling when content overflows */
+        }
+
+        .form-container p {
+            font-weight: 600;
+            font-size: 22px;
+            background: linear-gradient(135deg, #ff00cc, #3333ff); /* Gradient background */
+  -webkit-background-clip: text; /* Apply gradient to the text */
+  color: transparent; /* Make text transparent to show gradient */
+        }
+
+        .dataset-container {
+            flex: 1;
+            margin-top: 25px;
+    
+            margin-left: 20px;
+           /* max-width: 1100px;*/
+            max-height: 80vh; /* Add a fixed height to enable scrolling */
+            overflow-y: auto;/* Enable vertical scrolling when content overflows */
+        }
+
+        .dataset-container {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding-top: -10px;
+    padding-left: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    font-family: Arial, sans-serif;
+}
+        
+
+
+        .wrapper1 {
+            
+            max-width: 95%;
+            margin: 0 auto;
+           /* margin-top: 74px; */
+            padding: 20px;
+            border: 2px solid #ddd;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+           color: #333; /* Neon pink text color */
+  
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            box-shadow: none;
+        }
+
+        input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 20px auto;
+        }
+
+        .h5_title {
+    text-align: right;
+    font-size: 22px;
+    margin-bottom: -10px;
+    margin-top: 20px;
+    margin-right: 37%;
+    background-image: linear-gradient(135deg, #ff00cc, #3333ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+     table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    </style>
+</head>
+<body>
+
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link active" href="/preview_dataset"> <span>View Dataset</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Contact</a>
+                    </li>
+
+                  
+                <li class="nav-item2"><a class="nav-link1" href="#"><img src="{{ url_for('static', filename='images/twitter_logo2.svg') }}" alt="Twitter"></a></li>
+                <li class="nav-item"><a class="nav-link3" href="#"><img src="{{ url_for('static', filename='images/instagram_logo.svg') }}" alt="Instagram"></a></li>
+
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/snapchat_logo.svg') }}" alt="Snapchat"></a></li>
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/facebook_logo.svg') }}" alt="Facebook"></a></li>
+                
+                    
+                </ul>
+               
+            </div>
+        </div>
+    </nav>
+
+
+    <br>
+    <h1>Renaming the Columns</h1>
+     <h5 class="h5_title">(Dataset)</h5>
+
+    <div class="container-flex">
+        
+        <div class="form-container">
+           
+
+            <div class="wrapper1">
+                <form action="/rename_columns" method="post">
+                    <p>Rename columns:</p>
+                    {% for column in columns %}
+                    <label for="{{ column }}">{{ column }}:</label>
+                    <input type="text" name="{{ column }}" id="{{ column }}" value="{{ column }}"><br>
+                    {% endfor %}
+                    <br>
+                    <input type="submit" value="Rename">
+                </form>
+            </div>
+        </div>
+
+        <div class="dataset-container">
+            
+            {{ data | safe }}
+        </div>
+    </div>
+</body>
+</html>

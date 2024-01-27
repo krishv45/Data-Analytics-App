@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+    <title>Handle Missing Data</title>
+    <style>
+        
+       
+        .navbar-brand img {
+            max-height: 30px;
+            margin-left: 40px;
+        }
+
+        .navbar-dark {
+    background-color: #008069 !important;
+}
+
+/*  styling for the navigation bar */
+.navbar {
+  padding: 1rem;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link2 {
+  margin-left: 9px;
+}
+.nav-link1 {
+  margin-left: 1000px;
+  
+}
+
+.nav-link3 {
+  margin-left: 10px;
+}
+
+.nav-link3 img {
+  width: 24px;
+  height: 24px;
+}
+
+
+/* Adjust the icon size if necessary */
+.nav-link2 img {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-link1 img {
+  width: 23px;
+  height: 23px;
+}
+
+        /* Style the left and right containers */
+        .container-flex {
+            display: flex;
+        }
+
+        .left-container {
+            flex: 1;
+            margin-top: 20px;
+            padding: 20px;
+            max-width: 405px; /* Add a maximum width to control the width of the form container */
+            max-height: 70vh; /* Add a fixed height to enable scrolling */
+             /* Enable vertical scrolling when content overflows */
+        }
+
+        .right-container {
+            flex: 1;
+            margin-top: 40px;
+            padding: 20px;
+            margin-left: 20px;
+           /* max-width: 1100px;*/
+            max-height: 80vh; /* Add a fixed height to enable scrolling */
+            overflow-y: auto; /* Enable vertical scrolling when content overflows */
+        }
+
+           /* Style the form */
+    form {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    label {
+        font-weight: 450;
+    }
+
+    select,
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    input[type="radio"] {
+        margin-right: 5px;
+    }
+
+    /* Style the right container (dataset display) */
+    .right-container {
+        background-color: #f9f9f9;
+        padding-top: 3px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        font-family: Arial, sans-serif;
+    }
+
+    /* Style the table in the dataset display */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+     p {
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, #ff00cc, #3333ff); /* Gradient background */
+  -webkit-background-clip: text; /* Apply gradient to the text */
+  color: transparent; /* Make text transparent to show gradient */
+        }
+
+         .h5_title {
+    text-align: right;
+    font-size: 22px;
+    margin-bottom: -20px;
+    margin-top: 20px;
+    margin-right: 37%;
+    background-image: linear-gradient(135deg, #ff00cc, #3333ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+        .pcustom {
+            font-weight: 600;
+            font-size: 22px;
+            margin-bottom: 2px;
+            background: linear-gradient(135deg, #ff00cc, #3333ff); /* Gradient background */
+  -webkit-background-clip: text; /* Apply gradient to the text */
+  color: transparent; /* Make text transparent to show gradient */
+
+        }
+
+input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        h1 {
+            margin-top: 6px;
+        }
+
+
+    </style>
+</head>
+<body>
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link active" href="/preview_dataset"> <span>View Dataset</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Contact</a>
+                    </li>
+
+                <li class="nav-item2"><a class="nav-link1" href="#"><img src="{{ url_for('static', filename='images/twitter_logo2.svg') }}" alt="Twitter"></a></li>
+                <li class="nav-item"><a class="nav-link3" href="#"><img src="{{ url_for('static', filename='images/instagram_logo.svg') }}" alt="Instagram"></a></li>
+
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/snapchat_logo.svg') }}" alt="Snapchat"></a></li>
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/facebook_logo.svg') }}" alt="Facebook"></a></li>
+                
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+
+            
+    <h1 align="center">Handling Missing Data</h1>
+    <h5 class="h5_title">(Dataset)</h5>
+    <div class="container-flex">
+        <div class="left-container">
+            <div class="wrapper1">
+                <form action="/handle_missing_data" method="post">
+                    <p>Select Column to Handle Missing Data:</p>
+                    <label for="column_to_handle">Column:</label>
+                    <select name="column_to_handle" id="column_to_handle">
+                        <option value="all">All columns</option>
+                        {% for column in columns %}
+                        <option value="{{ column }}">{{ column }}</option>
+                        {% endfor %}
+                    </select><br>
+                    <br>
+                    <p class="pcustom">Select Method:</p>
+                    <input type="radio" id="drop" name="method" value="drop">
+                    <label for="drop">Drop rows with missing values</label><br>
+
+                    <input type="radio" id="drop_column" name="method" value="drop_column">
+                    <label for="drop_column">Drop columns with missing values</label><br>
+
+                    <input type="radio" id="mean" name="method" value="mean">
+                    <label for="mean">Fill missing values with mean</label><br>
+                    <input type="radio" id="median" name="method" value="median">
+                    <label for="median">Fill missing values with median</label><br>
+                    <input type="radio" id="custom" name="method" value="custom">
+                    <label for="custom">Fill missing values with custom value</label>
+                    <input type="text" name="custom_value" id="custom_value" disabled><br>
+                    <br>
+                    <input type="submit" value="Handle Missing Data">
+                </form>
+            </div>
+        </div>
+        <div class="right-container">
+            
+            {{ data | safe }}
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to enable/disable the custom value input field and handle 'All columns' option
+        const customRadio = document.getElementById("custom");
+        const customValueInput = document.getElementById("custom_value");
+        const columnSelect = document.getElementById("column_to_handle");
+
+        customRadio.addEventListener("change", function() {
+            customValueInput.disabled = !customRadio.checked;
+        });
+
+        columnSelect.addEventListener("change", function() {
+            if (columnSelect.value === "all") {
+                customValueInput.disabled = !customRadio.checked;
+                customRadio.checked = true;
+            } else {
+                customValueInput.disabled = !customRadio.checked;
+            }
+        });
+    </script>
+</body>
+</html>

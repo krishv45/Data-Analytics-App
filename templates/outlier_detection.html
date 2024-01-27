@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <title>Outlier Detection</title>
+    <style>
+                .navbar-brand img {
+            max-height: 30px;
+            margin-left: 40px;
+        }
+
+        .navbar-dark {
+    background-color: #008069 !important;
+}
+
+/*  styling for the navigation bar */
+.navbar {
+  padding: 1rem;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link2 {
+  margin-left: 9px;
+}
+.nav-link1 {
+  margin-left: 1000px;
+  
+}
+
+.nav-link3 {
+  margin-left: 10px;
+}
+
+.nav-link3 img {
+  width: 24px;
+  height: 24px;
+}
+
+
+/* Adjust the icon size if necessary */
+.nav-link2 img {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-link1 img {
+  width: 23px;
+  height: 23px;
+}
+
+
+
+
+
+        .title {
+            text-align: center;
+            font-size: 50px;
+            font-weight: 700;
+            color: red;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='images/logo2.png') }}" alt="Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:5000/">Home</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link active" href="/preview_dataset"> <span>View Dataset</span> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Contact</a>
+                    </li>
+
+                   
+                <li class="nav-item2"><a class="nav-link1" href="#"><img src="{{ url_for('static', filename='images/twitter_logo2.svg') }}" alt="Twitter"></a></li>
+                <li class="nav-item"><a class="nav-link3" href="#"><img src="{{ url_for('static', filename='images/instagram_logo.svg') }}" alt="Instagram"></a></li>
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/snapchat_logo.svg') }}" alt="Snapchat"></a></li>
+                <li class="nav-item"><a class="nav-link2" href="#"><img src="{{ url_for('static', filename='images/facebook_logo.svg') }}" alt="Facebook"></a></li>
+                 
+                
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </nav>
+   <br>
+    <h1 class="title">Outliers Detection</h1>
+
+    <!-- Display the outlier graphs for each numeric column -->
+    <div class="container">
+        {% for i in range(0, columns|length) %}
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <h3>{{ columns[i] }}</h3>
+                <img src="{{ plot_filepaths[i] }}" alt="Outlier Detection Graph - {{ columns[i] }}" class="img-fluid">
+            </div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
