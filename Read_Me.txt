@@ -6,4 +6,4 @@
 
 3. The dataset file is 'world_population_data.csv'.
 
-4.The images generated while performing operations will be saved in 'static' folder.
+4.The images generated while performing operations will be saved inside 'static' folder.
